@@ -2,6 +2,7 @@ package pl.slemjet;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import pl.slemjet.arrays.MyArray;
 
 import java.util.stream.IntStream;
 

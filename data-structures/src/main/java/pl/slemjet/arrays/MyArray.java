@@ -1,4 +1,4 @@
-package pl.slemjet;
+package pl.slemjet.arrays;
 
 import java.lang.reflect.Array;
 
