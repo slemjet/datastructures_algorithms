@@ -1,4 +1,4 @@
-package pl.slemjet;
+package pl.slemjet.arrays;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;

@@ -1,9 +1,12 @@
 package pl.slemjet.linkedlists;
 
 public class MyLinkedList<T> {
-    private Node<T> head;
-    private Node<T> tail;
+    private Node<T> head = null;
+    private Node<T> tail = null;
     private int length = 0;
+
+    public MyLinkedList() {
+    }
 
     public MyLinkedList(T headValue) {
         Node<T> firstNode = new Node<>(headValue, null);
@@ -12,15 +15,22 @@ public class MyLinkedList<T> {
     }
 
     public MyLinkedList<T> append(T newValue) {
-        Node<T> newNode = new Node<>(newValue, null);
-        tail.next = newNode;
-        this.tail = newNode;
+        if (tail == null) {
+            tail = head = new Node<>(newValue, null);
+        } else {
+            Node<T> newNode = new Node<>(newValue, null);
+            tail.next = newNode;
+            tail = newNode;
+        }
         length++;
         return this;
     }
 
     public MyLinkedList<T> prepend(T newValue) {
-        this.head = new Node<>(newValue, head);
+        head = new Node<>(newValue, head);
+        if (tail == null) {
+            tail = head;
+        }
         length++;
         return this;
     }
@@ -31,7 +41,7 @@ public class MyLinkedList<T> {
         else if (index <= 0) {
             prepend(newValue);
         } else {
-            Node<T> nodeAtIndex = getNodeAt(index - 1);
+            Node<T> nodeAtIndex = getNodeAt(head, index - 1);
             Node<T> prevNextNode = nodeAtIndex.next;
             nodeAtIndex.next = new Node<>(newValue, prevNextNode);
             length++;
@@ -40,10 +50,14 @@ public class MyLinkedList<T> {
     }
 
     public MyLinkedList<T> remove(int index) {
-        if (index >= 0 && index <= length) {
-            Node<T> prevNode = getNodeAt(index - 1);
-            Node<T> nextNode = prevNode.next.next;
-            prevNode.next = nextNode;
+        if (index == 0) {
+            head = head.getNext();
+        } else if (index > 0 && index <= length) {
+            Node<T> prevNode = getNodeAt(head, index - 1);
+            prevNode.next = prevNode.getNext() != null ? prevNode.getNext().getNext() : null;
+            if (index == length - 1) {
+                tail = prevNode;
+            }
         }
         length--;
         return this;
@@ -78,20 +92,20 @@ public class MyLinkedList<T> {
     }
 
     public T getHead() {
-        return head.getValue();
+        return head != null ? head.getValue() : null;
     }
 
     public T getTail() {
-        return tail.getValue();
+        return tail != null ? tail.getValue() : null;
     }
 
     public int getLength() {
         return length;
     }
 
-    private Node<T> getNodeAt(int index) {
+    private Node<T> getNodeAt(Node<T> start, int index) {
         int i = 0;
-        Node<T> nodeAtIndex = head;
+        Node<T> nodeAtIndex = start;
         while (i < index && nodeAtIndex != null) {
             nodeAtIndex = nodeAtIndex.next;
             i++;
@@ -101,11 +115,13 @@ public class MyLinkedList<T> {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("{head: ").append(head.getValue())
-                .append(", tail: ").append(tail.getValue())
-                .append(", length: ").append(length).append("}");
-        sb.append("[").append(head.getValue());
-        appendSubNodes(sb, head.getNext());
+        StringBuilder sb = new StringBuilder("{head: ").append(getHead())
+                .append(", tail: ").append(getTail())
+                .append(", length: ").append(getLength()).append("}");
+        sb.append("[").append(getHead());
+        if (head != null) {
+            appendSubNodes(sb, head.getNext());
+        }
         sb.append("]");
         return sb.toString();
     }
