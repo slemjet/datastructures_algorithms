@@ -15,6 +15,7 @@ public class MyGraph<T extends Comparable> {
     public void addVertex(T value) {
         if (!adjacentList.containsKey(value)) {
             adjacentList.put(value, new HashSet<>());
+            numberOfNodes++;
         }
     }
 
@@ -35,6 +36,10 @@ public class MyGraph<T extends Comparable> {
         for (T value : value2) {
             addEdge(value1, value);
         }
+    }
+
+    public int getNumberOfNodes() {
+        return numberOfNodes;
     }
 
     @Override

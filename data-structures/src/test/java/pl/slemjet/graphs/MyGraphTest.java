@@ -1,5 +1,6 @@
 package pl.slemjet.graphs;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class MyGraphTest {
@@ -34,5 +35,6 @@ class MyGraphTest {
 
         // then
         System.out.println(graph);
+        Assertions.assertThat(graph.getNumberOfNodes()).isEqualTo(7);
     }
 }
