@@ -9,10 +9,8 @@ package pl.slemjet.algorithms.simple;
 public class Fibonacci {
 
     public static int fibonacciLoop(int value) {
-        if (value == 0)
-            return 0;
-        if (value == 1)
-            return 1;
+        if (value < 2)
+            return value;
 
         int sum1 = 0;
         int sum2 = 1;
@@ -27,10 +25,8 @@ public class Fibonacci {
     }
 
     public static int fibonacciRecursive(int value) {
-        if (value == 0)
-            return 0;
-        if (value == 1)
-            return 1;
+        if (value < 2)
+            return value;
 
         return fibonacciRecursive(value - 1) + fibonacciRecursive(value - 2);
     }
