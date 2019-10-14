@@ -9,7 +9,7 @@ import pl.slemjet.trees.binary.MyBinarySearchTree;
 //      4       20
 //    /   \    /   \
 //   1     6  15   170
-class TreeTraverserTest {
+class BreadthFirstSearchTest {
 
     @Test
     void testRecursion1() {
@@ -17,7 +17,7 @@ class TreeTraverserTest {
         MyBinarySearchTree<Integer> tree = new MyBinarySearchTree<>(9, 4, 1, 6, 20, 15, 170);
 
         // when
-        Object[] result = TreeTraverser.breadthFirstSearchRecursion1(tree);
+        Object[] result = BreadthFirstSearch.searchRecursively1(tree);
 
         // then
         Assertions.assertThat(result).isEqualTo(new Integer[]{9, 4, 20, 1, 6, 15, 170});
@@ -29,7 +29,7 @@ class TreeTraverserTest {
         MyBinarySearchTree<Integer> tree = new MyBinarySearchTree<>(9, 4, 1, 6, 20, 15, 170);
 
         // when
-        Object[] result = TreeTraverser.breadthFirstSearchRecursion2(tree);
+        Object[] result = BreadthFirstSearch.searchRecursively2(tree);
 
         // then
         Assertions.assertThat(result).isEqualTo(new Integer[]{9, 4, 20, 1, 6, 15, 170});
@@ -41,7 +41,7 @@ class TreeTraverserTest {
         MyBinarySearchTree<Integer> tree = new MyBinarySearchTree<>(9, 4, 1, 6, 20, 15, 170);
 
         // when
-        Object[] result = TreeTraverser.breadthFirstSearchLoop(tree);
+        Object[] result = BreadthFirstSearch.searchIteratively(tree);
 
         // then
         Assertions.assertThat(result).isEqualTo(new Integer[]{9, 4, 20, 1, 6, 15, 170});

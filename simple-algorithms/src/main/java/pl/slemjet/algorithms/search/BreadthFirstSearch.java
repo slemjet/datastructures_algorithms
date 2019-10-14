@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.Queue;
 
 
-public class TreeTraverser {
+public class BreadthFirstSearch {
 
-    public static <T extends Comparable<T>> Object[] breadthFirstSearchRecursion1(MyBinarySearchTree<T> tree) {
+    public static <T extends Comparable<T>> Object[] searchRecursively1(MyBinarySearchTree<T> tree) {
 
         List<T> result = new ArrayList<>();
 
@@ -46,7 +46,7 @@ public class TreeTraverser {
         return subNodes;
     }
 
-    public static <T extends Comparable<T>> Object[] breadthFirstSearchRecursion2(MyBinarySearchTree<T> tree) {
+    public static <T extends Comparable<T>> Object[] searchRecursively2(MyBinarySearchTree<T> tree) {
         Queue<Node> queue = new ArrayDeque<>();
         List<Comparable> result = new ArrayList<>();
 
@@ -71,7 +71,7 @@ public class TreeTraverser {
         breadthFirstSearchRecursion(queue, result);
     }
 
-    public static <T extends Comparable<T>> Object[] breadthFirstSearchLoop(MyBinarySearchTree<T> tree) {
+    public static <T extends Comparable<T>> Object[] searchIteratively(MyBinarySearchTree<T> tree) {
         Queue<Node> queue = new ArrayDeque<>();
         List<Comparable> result = new ArrayList<>();
 
