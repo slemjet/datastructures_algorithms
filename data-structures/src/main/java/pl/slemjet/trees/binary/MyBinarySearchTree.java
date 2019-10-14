@@ -144,7 +144,7 @@ public class MyBinarySearchTree<T extends Comparable<T>> {
         return root.toString();
     }
 
-    class Node<T extends Comparable<T>> {
+    public class Node<T extends Comparable<T>> {
         private T value;
         private Node<T> left;
         private Node<T> right;
