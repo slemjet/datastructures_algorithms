@@ -11,14 +11,14 @@ import java.util.Queue;
 
 public class TreeTraverser {
 
-    public static <T extends Comparable<T>> Object[] breadthFirstSearch(MyBinarySearchTree<T> tree) {
+    public static <T extends Comparable<T>> Object[] breadthFirstSearchRecursion1(MyBinarySearchTree<T> tree) {
 
         List<T> result = new ArrayList<>();
 
         Node root = tree.getRoot();
         getNodeLevel(result, List.of(root));
 
-        return result.stream().toArray();
+        return result.toArray();
     }
 
     private static void getNodeLevel(List result, List<Node> nodes) {
@@ -46,15 +46,39 @@ public class TreeTraverser {
         return subNodes;
     }
 
+    public static <T extends Comparable<T>> Object[] breadthFirstSearchRecursion2(MyBinarySearchTree<T> tree) {
+        Queue<Node> queue = new ArrayDeque<>();
+        List<Comparable> result = new ArrayList<>();
 
-    public static <T extends Comparable<T>> Object[] breadthFirstSearch2(MyBinarySearchTree<T> tree) {
+        queue.add(tree.getRoot());
+        breadthFirstSearchRecursion(queue, result);
+
+        return result.toArray();
+    }
+
+    private static void breadthFirstSearchRecursion(Queue<MyBinarySearchTree.Node> queue, List<Comparable> result) {
+        if (queue.isEmpty())
+            return;
+
+        Node node = queue.poll();
+        result.add(node.getValue());
+
+        if (node.getLeft() != null)
+            queue.add(node.getLeft());
+        if (node.getRight() != null)
+            queue.add(node.getRight());
+
+        breadthFirstSearchRecursion(queue, result);
+    }
+
+    public static <T extends Comparable<T>> Object[] breadthFirstSearchLoop(MyBinarySearchTree<T> tree) {
         Queue<Node> queue = new ArrayDeque<>();
         List<Comparable> result = new ArrayList<>();
 
         Node currentNode = tree.getRoot();
         queue.add(currentNode);
 
-        while (!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             currentNode = queue.poll();
             result.add(currentNode.getValue());
 
