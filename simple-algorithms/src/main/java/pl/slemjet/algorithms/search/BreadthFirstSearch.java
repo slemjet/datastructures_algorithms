@@ -88,6 +88,6 @@ public class BreadthFirstSearch {
                 queue.add(currentNode.getRight());
         }
 
-        return result.stream().toArray();
+        return result.toArray();
     }
 }

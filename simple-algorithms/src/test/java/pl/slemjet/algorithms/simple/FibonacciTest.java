@@ -10,19 +10,25 @@ class FibonacciTest {
 
     @Test
     void fibonacciLoop() {
+        // given
+        Fibonacci fibonacci = new Fibonacci();
+
         // when
-        int fibonacci = Fibonacci.fibonacciLoop(6);
+        int result = fibonacci.fibonacciLoop(6);
 
         // then
-        Assertions.assertThat(fibonacci).isEqualTo(8);
+        Assertions.assertThat(result).isEqualTo(8);
     }
 
     @Test
     void fibonacciRecursive() {
+        // given
+        Fibonacci fibonacci = new Fibonacci();
+
         // when
-        int fibonacci = Fibonacci.fibonacciRecursive(6);
+        int result = fibonacci.fibonacciRecursive(6);
 
         // then
-        Assertions.assertThat(fibonacci).isEqualTo(8);
+        Assertions.assertThat(result).isEqualTo(8);
     }
 }

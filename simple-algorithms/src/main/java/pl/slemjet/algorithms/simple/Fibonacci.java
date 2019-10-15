@@ -8,7 +8,9 @@ package pl.slemjet.algorithms.simple;
 //For example: fibonacciRecursive(6) should return 8
 public class Fibonacci {
 
-    public static int fibonacciLoop(int value) {
+    private int iterations = 0;
+    public int fibonacciLoop(int value) {
+        iterations++;
         if (value < 2)
             return value;
 
@@ -16,6 +18,7 @@ public class Fibonacci {
         int sum2 = 1;
 
         for (int i = 2; i < value; i++) {
+            iterations++;
             int tmp = sum1;
             sum1 = sum2;
             sum2 = sum2 + tmp;
@@ -24,10 +27,19 @@ public class Fibonacci {
         return sum1 + sum2;
     }
 
-    public static int fibonacciRecursive(int value) {
+    public int fibonacciRecursive(int value) {
+        iterations++;
         if (value < 2)
             return value;
 
         return fibonacciRecursive(value - 1) + fibonacciRecursive(value - 2);
+    }
+
+    public int getIterations() {
+        return iterations;
+    }
+
+    public void setIterations(int iterations) {
+        this.iterations = iterations;
     }
 }
