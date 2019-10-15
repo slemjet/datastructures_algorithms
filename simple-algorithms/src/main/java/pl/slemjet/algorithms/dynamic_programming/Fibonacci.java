@@ -1,6 +1,8 @@
 package pl.slemjet.algorithms.dynamic_programming;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Fibonacci {
@@ -23,7 +25,25 @@ public class Fibonacci {
         }
     }
 
+    public int fibonacciDynamicBottomUp(int value) {
+        iterations++;
+
+        List<Integer> fibonacci = new ArrayList<>();
+        fibonacci.add(0);
+        fibonacci.add(1);
+
+        for (int i = 2; i <= value; i++) {
+            iterations++;
+            fibonacci.add(fibonacci.get(i - 2) + fibonacci.get(i - 1));
+        }
+        return fibonacci.get(value);
+    }
+
     public int getIterations() {
         return iterations;
+    }
+
+    public void setIterations(int iterations) {
+        this.iterations = iterations;
     }
 }

@@ -19,6 +19,19 @@ class FibonacciTest {
     }
 
     @Test
+    void fibonacciDynamicBottomUp() {
+        // given
+        Fibonacci fibonacci = new Fibonacci();
+
+        // when
+        int result = fibonacci.fibonacciDynamicBottomUp(10);
+
+        // then
+        System.out.println("Dynamic Bottom up Iterations: " + fibonacci.getIterations());
+        Assertions.assertThat(result).isEqualTo(55);
+    }
+
+    @Test
     void fibonacciLoop() {
         // given
         pl.slemjet.algorithms.simple.Fibonacci fibonacci = new pl.slemjet.algorithms.simple.Fibonacci();
